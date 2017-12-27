@@ -1,12 +1,13 @@
 ---
 title: Astrosoft API Reference
 
-language_tabs: # must be one of https://git.io/vQNgJ
+language_tabs: # must be one of 
+  - csharp
   - shell
   - javascript
 
 toc_footers:
-  - <a href='https://www.innovativeastrosolutions.com/'>Sign Up for a Developer Key</a>
+  - By <a href='https://www.innovativeastrosolutions.com/'>innovativeastrosolutions.com</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -38,9 +39,16 @@ xhr.open("POST", "https://api.innovativeastrosolutions.com/v0/horoscope");
 xhr.setRequestHeader("x-api-key", "your_api_key");
 ```
 
+```csharp
+var client = new RestClient("http://api.innovativeastrosolutions.com/v0/panchang");
+var request = new RestRequest(Method.POST);
+request.AddHeader("content-type", "application/json");
+request.AddHeader("x-api-key", "your_api_key");
+```
+
 > Make sure to replace `your_api_key` with your API key.
 
-Astrosoft uses API key in request header to authenticate clients. You can request new API key at our [website](https://www.innovativeastrosolutions.com/).
+Astrosoft uses API key in request header to authenticate clients. You can request new API key by contacting us at innovativeastrosolutions@gmail.com.
 
 <aside class="notice">
 You must replace <code>your_api_key</code> with your personal API key.
@@ -108,16 +116,49 @@ This endpoint returns Horscope details for birth data provided in Request Body.
 `POST https://api.innovativeastrosolutions.com/v0/horoscope`
 
 ```shell
-curl --request POST \
-  --url https://api.innovativeastrosolutions.com/v0/horoscope \
-  --header 'content-type: application/json' \
-  --header 'x-api-key: your_api_key' \
-  --data '{\n    "name": "Your Name",\n    "place": {\n        "name": "Sydney, AU",\n        "longitude": 151.209296,\n        "latitude": -33.868820,\n        "timeZoneId": "Australia/Sydney"\n    },\n    "year": 1967,\n    "month": 02,\n    "date": 26,\n    "hour": 0,\n    "minutes": 1,\n    "seconds": 0,\n    "options": {\n        "Ayanamsa": "LAHARI"\n    }\n}'
+curl -X POST \
+  http://api.innovativeastrosolutions.com/v0/horoscope \
+  -H 'content-type: application/json' \
+  -H 'x-api-key: your_api_key' \
+  -d '{
+    "name": "Your Name",
+    "place": {
+        "name": "Sydney, AU",
+        "longitude": 151.209296,
+        "latitude": -33.868820,
+        "timeZoneId": "Australia/Sydney"
+    },
+    "year": 1967,
+    "month": 02,
+    "date": 26,
+    "hour": 0,
+    "minutes": 1,
+    "seconds": 0,
+    "options": {
+        "Ayanamsa": "LAHARI"
+    }
+}'
 ```
 
 ```javascript
-var data = "{\n    \"name\": \"Your Name\",\n    \"place\": {\n        \"name\": \"Sydney, AU\",\n        \"longitude\": 151.209296,\n        \"latitude\": -33.868820,\n        \"timeZoneId\": \"Australia/Sydney\"\n    },\n    \"year\": 1967,\n    \"month\": 02,\n    \"date\": 26,\n    \"hour\": 0,\n    \"minutes\": 1,\n    \"seconds\": 0,\n    \"options\": {\n        \"Ayanamsa\": \"LAHARI\"\n    }\n}";
-
+var data = JSON.stringify({
+    "name": "Your Name",
+    "place": {
+        "name": "Sydney, AU",
+        "longitude": 151.209296,
+        "latitude": -33.868820,
+        "timeZoneId": "Australia/Sydney"
+    },
+    "year": 1967,
+    "month": 02,
+    "date": 26,
+    "hour": 0,
+    "minutes": 1,
+    "seconds": 0,
+    "options": {
+        "Ayanamsa": "LAHARI"
+    }
+});
 var xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
 
@@ -134,7 +175,16 @@ xhr.setRequestHeader("content-type", "application/json");
 xhr.send(data);
 ```
 
-> The above requests returns JSON response like this:
+```csharp
+var client = new RestClient("http://api.innovativeastrosolutions.com/v0/horoscope");
+var request = new RestRequest(Method.POST);
+request.AddHeader("content-type", "application/json");
+request.AddHeader("x-api-key", "your_api_key");
+request.AddParameter("application/json", "{\n    \"name\": \"Your Name\",\n    \"place\": {\n        \"name\": \"Sydney, AU\",\n        \"longitude\": 151.209296,\n        \"latitude\": -33.868820,\n        \"timeZoneId\": \"Australia/Sydney\"\n    },\n    \"year\": 1967,\n    \"month\": 02,\n    \"date\": 26,\n    \"hour\": 0,\n    \"minutes\": 1,\n    \"seconds\": 0,\n    \"options\": {\n        \"Ayanamsa\": \"LAHARI\"\n    }\n}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+> The above requests returns Horoscope JSON response like this:
 
 ```json
 {
@@ -253,4 +303,124 @@ xhr.send(data);
 }
 ```
 
+## Panchang Details
 
+This endpoint returns Panchang details for time and place data provided in Request Body.
+
+### HTTP Request
+
+`POST https://api.innovativeastrosolutions.com/v0/panchang`
+
+
+```shell
+curl -X POST \
+  http://api.innovativeastrosolutions.com/v0/panchang \
+  -H 'content-type: application/json' \
+  -H 'x-api-key: your_api_key' \
+  -d '{
+    "name": "Panchang",
+    "place": {
+        "name": "Tampa",
+        "longitude": -82.45843,
+        "latitude": 27.94752,
+        "timeZoneId": "America/New_York"
+    },
+    "year": 2017,
+    "month": 10,
+    "date": 14,
+    "hour": 6,
+    "minutes": 0,
+    "seconds": 0,
+    "options": {
+        "Ayanamsa": "LAHARI"
+    }
+}'
+```
+
+```javascript
+var data = JSON.stringify({
+  "name": "Panchang",
+  "place": {
+    "name": "Tampa",
+    "longitude": -82.45843,
+    "latitude": 27.94752,
+    "timeZoneId": "America/New_York"
+  },
+  "year": 2017,
+  "month": 10,
+  "date": 14,
+  "hour": 6,
+  "minutes": 0,
+  "seconds": 0,
+  "options": {
+    "Ayanamsa": "LAHARI"
+  }
+});
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("POST", "http://api.innovativeastrosolutions.com/v0/panchang");
+xhr.setRequestHeader("x-api-key", "your_api_key");
+xhr.setRequestHeader("content-type", "application/json");
+
+xhr.send(data);
+```
+
+```csharp
+var client = new RestClient("http://api.innovativeastrosolutions.com/v0/panchang");
+var request = new RestRequest(Method.POST);
+request.AddHeader("content-type", "application/json");
+request.AddHeader("x-api-key", "your_api_key");
+request.AddParameter("application/json", "{\n    \"name\": \"Panchang\",\n    \"place\": {\n        \"name\": \"Tampa\",\n        \"longitude\": -82.45843,\n        \"latitude\": 27.94752,\n        \"timeZoneId\": \"America/New_York\"\n    },\n    \"year\": 2017,\n    \"month\": 10,\n    \"date\": 14,\n    \"hour\": 6,\n    \"minutes\": 0,\n    \"seconds\": 0,\n    \"options\": {\n        \"Ayanamsa\": \"LAHARI\"\n    }\n}", ParameterType.RequestBody);
+IRestResponse response = client.Execute(request);
+```
+
+> The above request returns Panchang Response JSON like this
+
+```json
+{
+    "time": "06:00 AM",
+    "date": "Oct 14 2017",
+    "weekday": "Saturday",
+    "timeZoneId": "America/New_York",
+    "sunrise": "07:29 AM",
+    "sunset": "07:01 PM",
+    "nakshathra": {
+        "name": "Ashlesha",
+        "endTime": "20:50"
+    },
+    "thithi": {
+        "name": "Dasami",
+        "endTime": "16:33"
+    },
+    "yoga": {
+        "name": "Sadhya",
+        "endTime": "13:33"
+    },
+    "karna": {
+        "first": {
+            "name": "Visti",
+            "endTime": "16:33"
+        },
+        "second": {
+            "name": "Bava",
+            "endTime": "28:01"
+        }
+    },
+    "paksha": "Krishna",
+    "rahuKala": "09:00 AM - 10:30 AM",
+    "yamaKanda": "01:30 PM - 03:00 PM",
+    "auspiciousTime": [
+        "07.00 - 07.30 am , 10.30 - 12.00 pm",
+        "12.00 - 01.00 pm , 05.00 - 06.00 pm",
+        "06.00 - 07.30 pm , 09.00 - 10.00 pm"
+    ]
+}
+```
