@@ -270,7 +270,7 @@ curl <span class="s2">"https://api.innovativeastrosolutions.com/v0/horoscope"</s
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">withCredentials</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://api.innovativeastrosolutions.com/v0/horoscope"</span><span class="p">);</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"x-api-key"</span><span class="p">,</span> <span class="s2">"your_api_key"</span><span class="p">);</span>
-</code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"http://api.innovativeastrosolutions.com/v0/panchang"</span><span class="p">);</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://api.innovativeastrosolutions.com/v0/panchang"</span><span class="p">);</span>
 <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"content-type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">);</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"x-api-key"</span><span class="p">,</span> <span class="s">"your_api_key"</span><span class="p">);</span>
@@ -401,7 +401,7 @@ To make this easier, we will soon provide an API that will return latitude, long
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.innovativeastrosolutions.com/v0/horoscope</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
-  http://api.innovativeastrosolutions.com/v0/horoscope <span class="se">\</span>
+  https://api.innovativeastrosolutions.com/v0/horoscope <span class="se">\</span>
   -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'x-api-key: your_api_key'</span> <span class="se">\</span>
   -d <span class="s1">'{
@@ -454,7 +454,7 @@ To make this easier, we will soon provide an API that will return latitude, long
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"content-type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"http://api.innovativeastrosolutions.com/v0/horoscope"</span><span class="p">);</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://api.innovativeastrosolutions.com/v0/horoscope"</span><span class="p">);</span>
 <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"content-type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">);</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"x-api-key"</span><span class="p">,</span> <span class="s">"your_api_key"</span><span class="p">);</span>
@@ -583,7 +583,7 @@ To make this easier, we will soon provide an API that will return latitude, long
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST https://api.innovativeastrosolutions.com/v0/panchang</code></p>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
-  http://api.innovativeastrosolutions.com/v0/panchang <span class="se">\</span>
+  https://api.innovativeastrosolutions.com/v0/panchang <span class="se">\</span>
   -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'x-api-key: your_api_key'</span> <span class="se">\</span>
   -d <span class="s1">'{
@@ -632,12 +632,12 @@ To make this easier, we will soon provide an API that will return latitude, long
   <span class="p">}</span>
 <span class="p">});</span>
 
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"http://api.innovativeastrosolutions.com/v0/panchang"</span><span class="p">);</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://api.innovativeastrosolutions.com/v0/panchang"</span><span class="p">);</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"x-api-key"</span><span class="p">,</span> <span class="s2">"your_api_key"</span><span class="p">);</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"content-type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-</code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"http://api.innovativeastrosolutions.com/v0/panchang"</span><span class="p">);</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://api.innovativeastrosolutions.com/v0/panchang"</span><span class="p">);</span>
 <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"content-type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">);</span>
 <span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"x-api-key"</span><span class="p">,</span> <span class="s">"your_api_key"</span><span class="p">);</span>
