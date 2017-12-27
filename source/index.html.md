@@ -1,14 +1,12 @@
 ---
-title: API Reference
+title: Astrosoft API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://www.innovativeastrosolutions.com/'>Sign Up for a Developer Key</a>
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -19,221 +17,222 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to Astrosoft API! You can use our API to generate vedic astrology reports like Horoscope by providing birth details.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+> To authorize, provide `x-api-key` in the request header:
 
 ```shell
 # With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+curl "https://api.innovativeastrosolutions.com/v0/horoscope"
+  -H "x-api-key: your_api_key"
 ```
 
 ```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+xhr.open("POST", "https://api.innovativeastrosolutions.com/v0/horoscope");
+xhr.setRequestHeader("x-api-key", "your_api_key");
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `your_api_key` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
+Astrosoft uses API key in request header to authenticate clients. You can request new API key at our [website](https://www.innovativeastrosolutions.com/).
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>your_api_key</code> with your personal API key.
 </aside>
 
-# Kittens
+# API Documentation
 
-## Get All Kittens
+## Get Horoscope Details
 
-```ruby
-require 'kittn'
+> Request JSON should include birth details in following JSON format
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
+```json
+{
+    "name": "Deepak",
+    "place": {
+        "name": "Sydney, AU",
+        "longitude": 151.209296,
+        "latitude": -33.868820,
+        "timeZoneId": "Australia/Sydney"
+    },
+    "year": 1967,
+    "month": 02,
+    "date": 26,
+    "hour": 0,
+    "minutes": 1,
+    "seconds": 0,
+    "options": {
+        "Ayanamsa": "LAHARI"
+    }
+}
 ```
 
-```python
-import kittn
+### Request JSON Parameters
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+| Parameter        | Data type | Description                              |
+| ---------------- | --------- | ---------------------------------------- |
+| Name             | String    | Person Name                              |
+| place.name       | String    | Birth Place Name                         |
+| place.longitude  | Double    | longitude Eg: `151.20`                   |
+| place.latitude   | Double    | latitude Eg: `-33.86`                    |
+| place.timeZoneId | String    | [Timezone Id](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) Eg ` Australia/Sydney` |
+| Year             | Int       | Year Eg: `2017`                          |
+| Month            | Int       | Month Eg: `12`                           |
+| Date             | Int       | Date Eg: `31`                            |
+| Hour             | Int       | Hour in 24 hour format Eg: `23`          |
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl --request POST \
+  --url https://api.innovativeastrosolutions.com/v0/horoscope \
+  --header 'cache-control: no-cache' \
+  --header 'content-type: application/json' \
+  --header 'x-api-key: your_api_key' \
+  --data '{\n    "name": "Your Name",\n    "place": {\n        "name": "Sydney, AU",\n        "longitude": 151.209296,\n        "latitude": -33.868820,\n        "timeZoneId": "Australia/Sydney"\n    },\n    "year": 1967,\n    "month": 02,\n    "date": 26,\n    "hour": 0,\n    "minutes": 1,\n    "seconds": 0,\n    "options": {\n        "Ayanamsa": "LAHARI"\n    }\n}'
 ```
 
 ```javascript
-const kittn = require('kittn');
+var data = "{\n    \"name\": \"Your Name\",\n    \"place\": {\n        \"name\": \"Sydney, AU\",\n        \"longitude\": 151.209296,\n        \"latitude\": -33.868820,\n        \"timeZoneId\": \"Australia/Sydney\"\n    },\n    \"year\": 1967,\n    \"month\": 02,\n    \"date\": 26,\n    \"hour\": 0,\n    \"minutes\": 1,\n    \"seconds\": 0,\n    \"options\": {\n        \"Ayanamsa\": \"LAHARI\"\n    }\n}";
 
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
   }
-]
+});
+
+xhr.open("POST", "https://api.innovativeastrosolutions.com/v0/horoscope");
+xhr.setRequestHeader("x-api-key", "your_api_key");
+xhr.setRequestHeader("content-type", "application/json");
+xhr.setRequestHeader("cache-control", "no-cache");
+
+xhr.send(data);
 ```
 
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> The above requests returns JSON response like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "planetaryInfo": {
+        "Sun": {
+            "planet": "Sun",
+            "nakshathraPada": {
+                "nak": "Shatabhisha",
+                "pada": 2
+            },
+            "position": 312.8804768178875,
+            "sign": "Aquarius",
+            "signPosition": 12.880476817887484,
+            "retro": false
+        },
+        "Moon": {
+            "planet": "Moon",
+            "nakshathraPada": {
+                "nak": "Purva Phalguni",
+                "pada": 4
+            },
+            "position": 144.81099408451155,
+            "sign": "Leo",
+            "signPosition": 24.81099408451155,
+            "retro": false
+        },
+        "Mars": {
+            "planet": "Mars",
+            "nakshathraPada": {
+                "nak": "Swathi",
+                "pada": 1
+            },
+            "position": 189.07028979479819,
+            "sign": "Libra",
+            "signPosition": 9.070289794798185,
+            "retro": false
+        },
+        "Mercury": {
+            "planet": "Mercury",
+            "nakshathraPada": {
+                "nak": "Purva Bhadrapada",
+                "pada": 2
+            },
+            "position": 324.9373992941768,
+            "sign": "Aquarius",
+            "signPosition": 24.937399294176828,
+            "retro": true
+        },
+        "Jupiter": {
+            "planet": "Jupiter",
+            "nakshathraPada": {
+                "nak": "Punarvasu",
+                "pada": 4
+            },
+            "position": 91.93852678494463,
+            "sign": "Cancer",
+            "signPosition": 1.938526784944628,
+            "retro": true
+        },
+        "Venus": {
+            "planet": "Venus",
+            "nakshathraPada": {
+                "nak": "Uttra Bhadrapada",
+                "pada": 2
+            },
+            "position": 338.63741979962236,
+            "sign": "Pisces",
+            "signPosition": 8.637419799622364,
+            "retro": false
+        },
+        "Saturn": {
+            "planet": "Saturn",
+            "nakshathraPada": {
+                "nak": "Uttra Bhadrapada",
+                "pada": 1
+            },
+            "position": 335.8497349411362,
+            "sign": "Pisces",
+            "signPosition": 5.849734941136205,
+            "retro": false
+        },
+        "Rahu": {
+            "planet": "Rahu",
+            "nakshathraPada": {
+                "nak": "Bharani",
+                "pada": 1
+            },
+            "position": 15.49245914997472,
+            "sign": "Aries",
+            "signPosition": 15.49245914997472,
+            "retro": false
+        },
+        "Ketu": {
+            "planet": "Ketu",
+            "nakshathraPada": {
+                "nak": "Swathi",
+                "pada": 3
+            },
+            "position": 195.4924591499747,
+            "sign": "Libra",
+            "signPosition": 15.492459149974707,
+            "retro": false
+        },
+        "Ascendant": {
+            "planet": "Ascendant",
+            "nakshathraPada": {
+                "nak": "Moola",
+                "pada": 1
+            },
+            "position": 240.17358459540253,
+            "sign": "Sagittarius",
+            "signPosition": 0.1735845954025308,
+            "retro": false
+        }
+    }
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
-}
-```
-
-This endpoint deletes a specific kitten.
-
-### HTTP Request
-
-`DELETE http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
 
