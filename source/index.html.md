@@ -17,7 +17,7 @@ search: true
 
 # Introduction
 
-Welcome to Astrosoft API! You can use our API to generate vedic astrology reports like Horoscope by providing birth details.
+Welcome to Astrosoft API! You can use our API to generate vedic astrology reports by providing birth data.
 
 You can view code examples in the right hand side, and you can switch the programming language of the examples with the tabs in the top right.
 
@@ -50,7 +50,7 @@ You must replace <code>your_api_key</code> with your personal API key.
 
 ## Request JSON Parameters
 
-> Request JSON should provide birth details in following JSON format
+> Request JSON should provide birth data in following JSON format
 
 ```json
 {
@@ -73,7 +73,7 @@ You must replace <code>your_api_key</code> with your personal API key.
 }
 ```
 
-POST requests expects following birth details in Request body in JSON format.
+POST requests expects following birth information in Request body in JSON format.
 
 | Parameter        | Data type   | Description                              |
 | ---------------- | ----------- | ---------------------------------------- |
@@ -101,7 +101,7 @@ To make this easier, we will soon provide an API that will return latitude, long
 
 ## Horoscope Details
 
-This endpoint returns Horscope details for birth details provided in Request Body.
+This endpoint returns Horscope details for birth data provided in Request Body.
 
 ### HTTP Request
 
