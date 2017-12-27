@@ -10,7 +10,7 @@ toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
+  - response_codes
 
 search: true
 ---
@@ -48,9 +48,9 @@ You must replace <code>your_api_key</code> with your personal API key.
 
 # Documentation
 
-## Horoscope Details
+## Request JSON Parameters
 
-> Request JSON should include birth details in following JSON format
+> Request JSON should provide birth details in following JSON format
 
 ```json
 {
@@ -73,7 +73,7 @@ You must replace <code>your_api_key</code> with your personal API key.
 }
 ```
 
-### Request JSON Parameters
+POST requests expects following birth details in Request body in JSON format.
 
 | Parameter        | Data type   | Description                              |
 | ---------------- | ----------- | ---------------------------------------- |
@@ -82,20 +82,34 @@ You must replace <code>your_api_key</code> with your personal API key.
 | place.name       | String      | Place Name                               |
 | place.longitude  | Double      | Longitude ( Eg: `151.20` )               |
 | place.latitude   | Double      | Latitude ( Eg: `-33.86` )                |
-| place.timeZoneId | String      | Timezone Id from [valid values](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) ( Eg:  ` Australia/Sydney` ) |
+| place.timeZoneId | String      | Timezone Id ( Eg:  ` Australia/Sydney` ) |
 | year             | Int         | Year ( Eg: `2017` )                      |
 | month            | Int         | Month ( Eg: `12` )                       |
 | date             | Int         | Date ( Eg: `31` )                        |
 | hour             | Int         | Hour in 24 hour format ( Eg: `23` )      |
 | minutes          | Int         | Minutes ( Eg: `10` )                     |
 | seconds          | Int         | Seconds ( Eg: `00`)                      |
-| options          | JSON Object | Options. ( See below `options.*` params ) |
+| options          | JSON Object | Addtional Options. ( See below `options.*` params ) |
 | options.Ayanamsa | String      | Ayanamsa to use. (  Supported values are `LAHARI` , `RAMAN`, `KRISHNAMURTHI` ) |
+
+* You can use this [online tool](https://www.latlong.net/) to find latitude & longitude of the place.
+* You can look up valid TimezoneIds from this [wiki page](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+
+<aside class="notice">
+To make this easier, we will soon provide an API that will return latitude, longitude and TimezoneId for given first few letters for city.
+</aside>
+
+## Horoscope Details
+
+This endpoint returns Horscope details for birth details provided in Request Body.
+
+### HTTP Request
+
+`POST https://api.innovativeastrosolutions.com/v0/horoscope`
 
 ```shell
 curl --request POST \
   --url https://api.innovativeastrosolutions.com/v0/horoscope \
-  --header 'cache-control: no-cache' \
   --header 'content-type: application/json' \
   --header 'x-api-key: your_api_key' \
   --data '{\n    "name": "Your Name",\n    "place": {\n        "name": "Sydney, AU",\n        "longitude": 151.209296,\n        "latitude": -33.868820,\n        "timeZoneId": "Australia/Sydney"\n    },\n    "year": 1967,\n    "month": 02,\n    "date": 26,\n    "hour": 0,\n    "minutes": 1,\n    "seconds": 0,\n    "options": {\n        "Ayanamsa": "LAHARI"\n    }\n}'
@@ -116,7 +130,6 @@ xhr.addEventListener("readystatechange", function () {
 xhr.open("POST", "https://api.innovativeastrosolutions.com/v0/horoscope");
 xhr.setRequestHeader("x-api-key", "your_api_key");
 xhr.setRequestHeader("content-type", "application/json");
-xhr.setRequestHeader("cache-control", "no-cache");
 
 xhr.send(data);
 ```
