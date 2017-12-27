@@ -40,7 +40,7 @@ xhr.setRequestHeader("x-api-key", "your_api_key");
 ```
 
 ```csharp
-var client = new RestClient("http://api.innovativeastrosolutions.com/v0/panchang");
+var client = new RestClient("https://api.innovativeastrosolutions.com/v0/panchang");
 var request = new RestRequest(Method.POST);
 request.AddHeader("content-type", "application/json");
 request.AddHeader("x-api-key", "your_api_key");
@@ -117,7 +117,7 @@ This endpoint returns Horscope details for birth data provided in Request Body.
 
 ```shell
 curl -X POST \
-  http://api.innovativeastrosolutions.com/v0/horoscope \
+  https://api.innovativeastrosolutions.com/v0/horoscope \
   -H 'content-type: application/json' \
   -H 'x-api-key: your_api_key' \
   -d '{
@@ -176,7 +176,7 @@ xhr.send(data);
 ```
 
 ```csharp
-var client = new RestClient("http://api.innovativeastrosolutions.com/v0/horoscope");
+var client = new RestClient("https://api.innovativeastrosolutions.com/v0/horoscope");
 var request = new RestRequest(Method.POST);
 request.AddHeader("content-type", "application/json");
 request.AddHeader("x-api-key", "your_api_key");
@@ -314,7 +314,7 @@ This endpoint returns Panchang details for time and place data provided in Reque
 
 ```shell
 curl -X POST \
-  http://api.innovativeastrosolutions.com/v0/panchang \
+  https://api.innovativeastrosolutions.com/v0/panchang \
   -H 'content-type: application/json' \
   -H 'x-api-key: your_api_key' \
   -d '{
@@ -366,7 +366,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("POST", "http://api.innovativeastrosolutions.com/v0/panchang");
+xhr.open("POST", "https://api.innovativeastrosolutions.com/v0/panchang");
 xhr.setRequestHeader("x-api-key", "your_api_key");
 xhr.setRequestHeader("content-type", "application/json");
 
@@ -374,7 +374,7 @@ xhr.send(data);
 ```
 
 ```csharp
-var client = new RestClient("http://api.innovativeastrosolutions.com/v0/panchang");
+var client = new RestClient("https://api.innovativeastrosolutions.com/v0/panchang");
 var request = new RestRequest(Method.POST);
 request.AddHeader("content-type", "application/json");
 request.AddHeader("x-api-key", "your_api_key");
