@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;csharp&quot;,&quot;shell&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,6 +211,7 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
+              <a href="#" data-language-name="csharp">csharp</a>
               <a href="#" data-language-name="shell">shell</a>
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
@@ -234,6 +235,9 @@
                   <li>
                     <a href="#horoscope-details" class="toc-h2 toc-link" data-title="Horoscope Details">Horoscope Details</a>
                   </li>
+                  <li>
+                    <a href="#panchang-details" class="toc-h2 toc-link" data-title="Panchang Details">Panchang Details</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -244,7 +248,7 @@
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='https://www.innovativeastrosolutions.com/'>Sign Up for a Developer Key</a></li>
+            <li>By <a href='https://www.innovativeastrosolutions.com/'>innovativeastrosolutions.com</a></li>
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -252,7 +256,7 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to Astrosoft API! You can use our API to generate vedic astrology reports like Horoscope by providing birth details.</p>
+<p>Welcome to Astrosoft API! You can use our API to generate vedic astrology reports by providing birth data.</p>
 
 <p>You can view code examples in the right hand side, and you can switch the programming language of the examples with the tabs in the top right.</p>
 <h1 id='authentication'>Authentication</h1>
@@ -266,19 +270,23 @@ curl <span class="s2">"https://api.innovativeastrosolutions.com/v0/horoscope"</s
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">withCredentials</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"https://api.innovativeastrosolutions.com/v0/horoscope"</span><span class="p">);</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"x-api-key"</span><span class="p">,</span> <span class="s2">"your_api_key"</span><span class="p">);</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"http://api.innovativeastrosolutions.com/v0/panchang"</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"content-type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">);</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"x-api-key"</span><span class="p">,</span> <span class="s">"your_api_key"</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>Make sure to replace <code>your_api_key</code> with your API key.</p>
 </blockquote>
 
-<p>Astrosoft uses API key in request header to authenticate clients. You can request new API key at our <a href="https://www.innovativeastrosolutions.com/">website</a>.</p>
+<p>Astrosoft uses API key in request header to authenticate clients. You can request new API key by contacting us at innovativeastrosolutions@gmail.com.</p>
 
 <aside class="notice">
 You must replace <code>your_api_key</code> with your personal API key.
 </aside>
 <h1 id='documentation'>Documentation</h1><h2 id='request-json-parameters'>Request JSON Parameters</h2>
 <blockquote>
-<p>Request JSON should provide birth details in following JSON format</p>
+<p>Request JSON should provide birth data in following JSON format</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Your Name"</span><span class="p">,</span><span class="w">
@@ -299,7 +307,7 @@ You must replace <code>your_api_key</code> with your personal API key.
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>POST requests expects following birth details in Request body in JSON format.</p>
+<p>POST requests expects following birth information in Request body in JSON format.</p>
 
 <table><thead>
 <tr>
@@ -389,16 +397,49 @@ You must replace <code>your_api_key</code> with your personal API key.
 To make this easier, we will soon provide an API that will return latitude, longitude and TimezoneId for given first few letters for city.
 </aside>
 <h2 id='horoscope-details'>Horoscope Details</h2>
-<p>This endpoint returns Horscope details for birth details provided in Request Body.</p>
+<p>This endpoint returns Horscope details for birth data provided in Request Body.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST https://api.innovativeastrosolutions.com/v0/horoscope</code></p>
-<pre class="highlight shell tab-shell"><code>curl --request POST <span class="se">\</span>
-  --url https://api.innovativeastrosolutions.com/v0/horoscope <span class="se">\</span>
-  --header <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
-  --header <span class="s1">'x-api-key: your_api_key'</span> <span class="se">\</span>
-  --data <span class="s1">'{\n    "name": "Your Name",\n    "place": {\n        "name": "Sydney, AU",\n        "longitude": 151.209296,\n        "latitude": -33.868820,\n        "timeZoneId": "Australia/Sydney"\n    },\n    "year": 1967,\n    "month": 02,\n    "date": 26,\n    "hour": 0,\n    "minutes": 1,\n    "seconds": 0,\n    "options": {\n        "Ayanamsa": "LAHARI"\n    }\n}'</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="s2">"{\n    \"name\": \"Your Name\",\n    \"place\": {\n        \"name\": \"Sydney, AU\",\n        \"longitude\": 151.209296,\n        \"latitude\": -33.868820,\n        \"timeZoneId\": \"Australia/Sydney\"\n    },\n    \"year\": 1967,\n    \"month\": 02,\n    \"date\": 26,\n    \"hour\": 0,\n    \"minutes\": 1,\n    \"seconds\": 0,\n    \"options\": {\n        \"Ayanamsa\": \"LAHARI\"\n    }\n}"</span><span class="p">;</span>
-
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://api.innovativeastrosolutions.com/v0/horoscope <span class="se">\</span>
+  -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'x-api-key: your_api_key'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "name": "Your Name",
+    "place": {
+        "name": "Sydney, AU",
+        "longitude": 151.209296,
+        "latitude": -33.868820,
+        "timeZoneId": "Australia/Sydney"
+    },
+    "year": 1967,
+    "month": 02,
+    "date": 26,
+    "hour": 0,
+    "minutes": 1,
+    "seconds": 0,
+    "options": {
+        "Ayanamsa": "LAHARI"
+    }
+}'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Your Name"</span><span class="p">,</span>
+    <span class="s2">"place"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Sydney, AU"</span><span class="p">,</span>
+        <span class="s2">"longitude"</span><span class="p">:</span> <span class="mf">151.209296</span><span class="p">,</span>
+        <span class="s2">"latitude"</span><span class="p">:</span> <span class="o">-</span><span class="mf">33.868820</span><span class="p">,</span>
+        <span class="s2">"timeZoneId"</span><span class="p">:</span> <span class="s2">"Australia/Sydney"</span>
+    <span class="p">},</span>
+    <span class="s2">"year"</span><span class="p">:</span> <span class="mi">1967</span><span class="p">,</span>
+    <span class="s2">"month"</span><span class="p">:</span> <span class="mi">02</span><span class="p">,</span>
+    <span class="s2">"date"</span><span class="p">:</span> <span class="mi">26</span><span class="p">,</span>
+    <span class="s2">"hour"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"minutes"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"seconds"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"options"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"Ayanamsa"</span><span class="p">:</span> <span class="s2">"LAHARI"</span>
+    <span class="p">}</span>
+<span class="p">});</span>
 <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">withCredentials</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
 
@@ -413,9 +454,15 @@ To make this easier, we will soon provide an API that will return latitude, long
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"content-type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
 
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"http://api.innovativeastrosolutions.com/v0/horoscope"</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"content-type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">);</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"x-api-key"</span><span class="p">,</span> <span class="s">"your_api_key"</span><span class="p">);</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">AddParameter</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">,</span> <span class="s">"{\n    \"name\": \"Your Name\",\n    \"place\": {\n        \"name\": \"Sydney, AU\",\n        \"longitude\": 151.209296,\n        \"latitude\": -33.868820,\n        \"timeZoneId\": \"Australia/Sydney\"\n    },\n    \"year\": 1967,\n    \"month\": 02,\n    \"date\": 26,\n    \"hour\": 0,\n    \"minutes\": 1,\n    \"seconds\": 0,\n    \"options\": {\n        \"Ayanamsa\": \"LAHARI\"\n    }\n}"</span><span class="p">,</span> <span class="n">ParameterType</span><span class="p">.</span><span class="n">RequestBody</span><span class="p">);</span>
+<span class="n">IRestResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
 </code></pre>
 <blockquote>
-<p>The above requests returns JSON response like this:</p>
+<p>The above requests returns Horoscope JSON response like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"planetaryInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -531,6 +578,113 @@ To make this easier, we will soon provide an API that will return latitude, long
         </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='panchang-details'>Panchang Details</h2>
+<p>This endpoint returns Panchang details for time and place data provided in Request Body.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>POST https://api.innovativeastrosolutions.com/v0/panchang</code></p>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  http://api.innovativeastrosolutions.com/v0/panchang <span class="se">\</span>
+  -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'x-api-key: your_api_key'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "name": "Panchang",
+    "place": {
+        "name": "Tampa",
+        "longitude": -82.45843,
+        "latitude": 27.94752,
+        "timeZoneId": "America/New_York"
+    },
+    "year": 2017,
+    "month": 10,
+    "date": 14,
+    "hour": 6,
+    "minutes": 0,
+    "seconds": 0,
+    "options": {
+        "Ayanamsa": "LAHARI"
+    }
+}'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Panchang"</span><span class="p">,</span>
+  <span class="s2">"place"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Tampa"</span><span class="p">,</span>
+    <span class="s2">"longitude"</span><span class="p">:</span> <span class="o">-</span><span class="mf">82.45843</span><span class="p">,</span>
+    <span class="s2">"latitude"</span><span class="p">:</span> <span class="mf">27.94752</span><span class="p">,</span>
+    <span class="s2">"timeZoneId"</span><span class="p">:</span> <span class="s2">"America/New_York"</span>
+  <span class="p">},</span>
+  <span class="s2">"year"</span><span class="p">:</span> <span class="mi">2017</span><span class="p">,</span>
+  <span class="s2">"month"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+  <span class="s2">"date"</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
+  <span class="s2">"hour"</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+  <span class="s2">"minutes"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"seconds"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+  <span class="s2">"options"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"Ayanamsa"</span><span class="p">:</span> <span class="s2">"LAHARI"</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">withCredentials</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"readystatechange"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"POST"</span><span class="p">,</span> <span class="s2">"http://api.innovativeastrosolutions.com/v0/panchang"</span><span class="p">);</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"x-api-key"</span><span class="p">,</span> <span class="s2">"your_api_key"</span><span class="p">);</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"content-type"</span><span class="p">,</span> <span class="s2">"application/json"</span><span class="p">);</span>
+
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"http://api.innovativeastrosolutions.com/v0/panchang"</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="n">Method</span><span class="p">.</span><span class="n">POST</span><span class="p">);</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"content-type"</span><span class="p">,</span> <span class="s">"application/json"</span><span class="p">);</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"x-api-key"</span><span class="p">,</span> <span class="s">"your_api_key"</span><span class="p">);</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">AddParameter</span><span class="p">(</span><span class="s">"application/json"</span><span class="p">,</span> <span class="s">"{\n    \"name\": \"Panchang\",\n    \"place\": {\n        \"name\": \"Tampa\",\n        \"longitude\": -82.45843,\n        \"latitude\": 27.94752,\n        \"timeZoneId\": \"America/New_York\"\n    },\n    \"year\": 2017,\n    \"month\": 10,\n    \"date\": 14,\n    \"hour\": 6,\n    \"minutes\": 0,\n    \"seconds\": 0,\n    \"options\": {\n        \"Ayanamsa\": \"LAHARI\"\n    }\n}"</span><span class="p">,</span> <span class="n">ParameterType</span><span class="p">.</span><span class="n">RequestBody</span><span class="p">);</span>
+<span class="n">IRestResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above request returns Panchang Response JSON like this</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"06:00 AM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oct 14 2017"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"weekday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Saturday"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/New_York"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sunrise"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:29 AM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"sunset"</span><span class="p">:</span><span class="w"> </span><span class="s2">"07:01 PM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nakshathra"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ashlesha"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20:50"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"thithi"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dasami"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16:33"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"yoga"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sadhya"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13:33"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"karna"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"first"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visti"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"16:33"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"second"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bava"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28:01"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"paksha"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Krishna"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"rahuKala"</span><span class="p">:</span><span class="w"> </span><span class="s2">"09:00 AM - 10:30 AM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"yamaKanda"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01:30 PM - 03:00 PM"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"auspiciousTime"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"07.00 - 07.30 am , 10.30 - 12.00 pm"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"12.00 - 01.00 pm , 05.00 - 06.00 pm"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"06.00 - 07.30 pm , 09.00 - 10.00 pm"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='http-response-codes'>HTTP Response Codes</h1>
 <p>The Astrosoft API will return following HTTP response codes:</p>
 
@@ -557,6 +711,7 @@ To make this easier, we will soon provide an API that will return latitude, long
       </div>
       <div class="dark-box">
           <div class="lang-selector">
+                <a href="#" data-language-name="csharp">csharp</a>
                 <a href="#" data-language-name="shell">shell</a>
                 <a href="#" data-language-name="javascript">javascript</a>
           </div>
