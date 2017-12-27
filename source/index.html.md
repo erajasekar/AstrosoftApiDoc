@@ -19,7 +19,7 @@ search: true
 
 Welcome to Astrosoft API! You can use our API to generate vedic astrology reports like Horoscope by providing birth details.
 
-You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+You can view code examples in the right hand side, and you can switch the programming language of the examples with the tabs in the top right.
 
 # Authentication
 
@@ -46,15 +46,15 @@ Astrosoft uses API key in request header to authenticate clients. You can reques
 You must replace <code>your_api_key</code> with your personal API key.
 </aside>
 
-# API Documentation
+# Documentation
 
-## Get Horoscope Details
+## Horoscope Details
 
 > Request JSON should include birth details in following JSON format
 
 ```json
 {
-    "name": "Deepak",
+    "name": "Your Name",
     "place": {
         "name": "Sydney, AU",
         "longitude": 151.209296,
@@ -75,17 +75,22 @@ You must replace <code>your_api_key</code> with your personal API key.
 
 ### Request JSON Parameters
 
-| Parameter        | Data type | Description                              |
-| ---------------- | --------- | ---------------------------------------- |
-| Name             | String    | Person Name                              |
-| place.name       | String    | Birth Place Name                         |
-| place.longitude  | Double    | longitude Eg: `151.20`                   |
-| place.latitude   | Double    | latitude Eg: `-33.86`                    |
-| place.timeZoneId | String    | [Timezone Id](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) Eg ` Australia/Sydney` |
-| Year             | Int       | Year Eg: `2017`                          |
-| Month            | Int       | Month Eg: `12`                           |
-| Date             | Int       | Date Eg: `31`                            |
-| Hour             | Int       | Hour in 24 hour format Eg: `23`          |
+| Parameter        | Data type   | Description                              |
+| ---------------- | ----------- | ---------------------------------------- |
+| name             | String      | Person Name                              |
+| place            | JSON Object | Birth Place. ( See below `place.*` params ) |
+| place.name       | String      | Place Name                               |
+| place.longitude  | Double      | Longitude ( Eg: `151.20` )               |
+| place.latitude   | Double      | Latitude ( Eg: `-33.86` )                |
+| place.timeZoneId | String      | Timezone Id from [valid values](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) ( Eg:  ` Australia/Sydney` ) |
+| year             | Int         | Year ( Eg: `2017` )                      |
+| month            | Int         | Month ( Eg: `12` )                       |
+| date             | Int         | Date ( Eg: `31` )                        |
+| hour             | Int         | Hour in 24 hour format ( Eg: `23` )      |
+| minutes          | Int         | Minutes ( Eg: `10` )                     |
+| seconds          | Int         | Seconds ( Eg: `00`)                      |
+| options          | JSON Object | Options. ( See below `options.*` params ) |
+| options.Ayanamsa | String      | Ayanamsa to use. (  Supported values are `LAHARI` , `RAMAN`, `KRISHNAMURTHI` ) |
 
 ```shell
 curl --request POST \
