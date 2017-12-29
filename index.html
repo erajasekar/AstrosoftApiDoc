@@ -238,6 +238,9 @@
                   <li>
                     <a href="#panchang-details" class="toc-h2 toc-link" data-title="Panchang Details">Panchang Details</a>
                   </li>
+                  <li>
+                    <a href="#geo-search-place" class="toc-h2 toc-link" data-title="Geo Search Place">Geo Search Place</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -259,6 +262,10 @@
 <p>Welcome to Astrosoft API! You can use our API to generate vedic astrology reports by providing birth data.</p>
 
 <p>You can view code examples in the right hand side, and you can switch the programming language of the examples with the tabs in the top right.</p>
+
+<p>Watch this screencast to quickly get started.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tZCEwuLeLJ4" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, provide <code>x-api-key</code> in the request header:</p>
@@ -388,13 +395,8 @@ You must replace <code>your_api_key</code> with your personal API key.
 </tr>
 </tbody></table>
 
-<ul>
-<li>You can use this <a href="https://www.latlong.net/">online tool</a> to find latitude &amp; longitude of the place.</li>
-<li>You can look up valid TimezoneIds from this <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">wiki page</a></li>
-</ul>
-
 <aside class="notice">
-To make this easier, we will soon provide an API that will return latitude, longitude and TimezoneId for given first few letters for city.
+You can use geosearch endpoint to get latitude, longitude and timeZoneId of the place
 </aside>
 <h2 id='horoscope-details'>Horoscope Details</h2>
 <p>This endpoint returns Horscope details for birth data provided in Request Body.</p>
@@ -685,6 +687,78 @@ To make this easier, we will soon provide an API that will return latitude, long
         </span><span class="s2">"06.00 - 07.30 pm , 09.00 - 10.00 pm"</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre><h2 id='geo-search-place'>Geo Search Place</h2>
+<p>This endpoint returns longitude, latitude and timezone of the given place.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>GET https://api.innovativeastrosolutions.com/v0/geosearch</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>place</td>
+<td>String</td>
+<td>Yes</td>
+<td>Place name</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>No (Default is 5)</td>
+<td>Number of results to return. (Max value is 10)</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  <span class="s1">'https://api.innovativeastrosolutions.com/v0/geosearch?Sydney&amp;limit=5'</span> <span class="se">\</span>
+  -H <span class="s1">'x-api-key: your_api_key'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">withCredentials</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">"readystatechange"</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">readyState</span> <span class="o">===</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s2">"GET"</span><span class="p">,</span> <span class="s2">"https://api.innovativeastrosolutions.com/v0/geosearch?place=Sydney&amp;limit=5"</span><span class="p">);</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"x-api-key"</span><span class="p">,</span> <span class="s2">"your_api_key"</span><span class="p">);</span>
+
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</code></pre><pre class="highlight csharp tab-csharp"><code><span class="kt">var</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestClient</span><span class="p">(</span><span class="s">"https://api.innovativeastrosolutions.com/v0/geosearch?place=Sydney&amp;limit=5"</span><span class="p">);</span>
+<span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">RestRequest</span><span class="p">(</span><span class="n">Method</span><span class="p">.</span><span class="n">GET</span><span class="p">);</span>
+<span class="n">request</span><span class="p">.</span><span class="nf">AddHeader</span><span class="p">(</span><span class="s">"x-api-key"</span><span class="p">,</span> <span class="s">"your_api_key"</span><span class="p">);</span>
+<span class="n">IRestResponse</span> <span class="n">response</span> <span class="p">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above request returns Geo Search Result Response JSON like this</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"errorMessage"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"places"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sydney , New South Wales , Australia"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">151.2164539</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-33.8548157</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Australia/Sydney"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sydney , Nova Scotia , Canada"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">-60.1735637935906</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="mf">46.1654766</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"America/Glace_Bay"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"rateLimitRemaining"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2378"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isSuccess"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre><h1 id='http-response-codes'>HTTP Response Codes</h1>
 <p>The Astrosoft API will return following HTTP response codes:</p>
 
@@ -696,11 +770,19 @@ To make this easier, we will soon provide an API that will return latitude, long
 </thead><tbody>
 <tr>
 <td>200</td>
-<td>OK -- Successfully completed request</td>
+<td>OK — Successfully completed request</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request — Invalid data provided in request body</td>
 </tr>
 <tr>
 <td>403</td>
 <td>Forbidden — Invalid or missing API key header.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error — Something went wrong in processing request</td>
 </tr>
 </tbody></table>
 <h1 id='road-map'>Road Map</h1>
