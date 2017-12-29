@@ -22,6 +22,10 @@ Welcome to Astrosoft API! You can use our API to generate vedic astrology report
 
 You can view code examples in the right hand side, and you can switch the programming language of the examples with the tabs in the top right.
 
+Watch this screencast to quickly get started.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tZCEwuLeLJ4" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+
 # Authentication
 
 > To authorize, provide `x-api-key` in the request header:
@@ -100,11 +104,9 @@ POST requests expects following birth information in Request body in JSON format
 | options          | JSON Object | Addtional Options. ( See below `options.*` params ) |
 | options.Ayanamsa | String      | Ayanamsa to use. (  Supported values are `LAHARI` , `RAMAN`, `KRISHNAMURTHI` ) |
 
-* You can use this [online tool](https://www.latlong.net/) to find latitude & longitude of the place.
-* You can look up valid TimezoneIds from this [wiki page](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
 
 <aside class="notice">
-To make this easier, we will soon provide an API that will return latitude, longitude and TimezoneId for given first few letters for city.
+You can use geosearch endpoint to get latitude, longitude and timeZoneId of the place
 </aside>
 
 ## Horoscope Details
@@ -422,5 +424,76 @@ IRestResponse response = client.Execute(request);
         "12.00 - 01.00 pm , 05.00 - 06.00 pm",
         "06.00 - 07.30 pm , 09.00 - 10.00 pm"
     ]
+}
+```
+
+## Geo Search Place
+
+This endpoint returns longitude, latitude and timezone of the given place.
+
+### HTTP Request
+
+`GET https://api.innovativeastrosolutions.com/v0/geosearch`
+
+### Query Parameters
+
+| Parameter        | Data type   | Required          | Description                                      |
+| ---------------- | ----------- | ------------------|--------------------------------------------------|
+| place            | String      | Yes               | Place name                                       |
+| limit            | int         | No (Default is 5) | Number of results to return. (Max value is 10)   | 
+
+
+```shell
+curl -X GET \
+  'https://api.innovativeastrosolutions.com/v0/geosearch?Sydney&limit=5' \
+  -H 'x-api-key: your_api_key'
+```
+
+```javascript
+var data = null;
+
+var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("GET", "https://api.innovativeastrosolutions.com/v0/geosearch?place=Sydney&limit=5");
+xhr.setRequestHeader("x-api-key", "your_api_key");
+
+xhr.send(data);
+```
+
+```csharp
+var client = new RestClient("https://api.innovativeastrosolutions.com/v0/geosearch?place=Sydney&limit=5");
+var request = new RestRequest(Method.GET);
+request.AddHeader("x-api-key", "your_api_key");
+IRestResponse response = client.Execute(request);
+```
+> The above request returns Geo Search Result Response JSON like this
+
+```json
+{
+    "errorMessage": null,
+    "places": [
+        {
+            "name": "Sydney , New South Wales , Australia",
+            "longitude": 151.2164539,
+            "latitude": -33.8548157,
+            "timeZoneId": "Australia/Sydney"
+        },
+        {
+            "name": "Sydney , Nova Scotia , Canada",
+            "longitude": -60.1735637935906,
+            "latitude": 46.1654766,
+            "timeZoneId": "America/Glace_Bay"
+        }
+    ],
+    "rateLimitRemaining": "2378",
+    "total": 2,
+    "isSuccess": true
 }
 ```
