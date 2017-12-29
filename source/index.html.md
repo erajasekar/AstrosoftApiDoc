@@ -191,7 +191,7 @@ IRestResponse response = client.Execute(request);
     "planetaryInfo": {
         "Sun": {
             "planet": "Sun",
-            "nakshathraPada": {
+            "nakshatraPada": {
                 "nak": "Shatabhisha",
                 "pada": 2
             },
@@ -202,7 +202,7 @@ IRestResponse response = client.Execute(request);
         },
         "Moon": {
             "planet": "Moon",
-            "nakshathraPada": {
+            "nakshatraPada": {
                 "nak": "Purva Phalguni",
                 "pada": 4
             },
@@ -213,7 +213,7 @@ IRestResponse response = client.Execute(request);
         },
         "Mars": {
             "planet": "Mars",
-            "nakshathraPada": {
+            "nakshatraPada": {
                 "nak": "Swathi",
                 "pada": 1
             },
@@ -224,7 +224,7 @@ IRestResponse response = client.Execute(request);
         },
         "Mercury": {
             "planet": "Mercury",
-            "nakshathraPada": {
+            "nakshatraPada": {
                 "nak": "Purva Bhadrapada",
                 "pada": 2
             },
@@ -235,7 +235,7 @@ IRestResponse response = client.Execute(request);
         },
         "Jupiter": {
             "planet": "Jupiter",
-            "nakshathraPada": {
+            "nakshatraPada": {
                 "nak": "Punarvasu",
                 "pada": 4
             },
@@ -246,7 +246,7 @@ IRestResponse response = client.Execute(request);
         },
         "Venus": {
             "planet": "Venus",
-            "nakshathraPada": {
+            "nakshatraPada": {
                 "nak": "Uttra Bhadrapada",
                 "pada": 2
             },
@@ -257,7 +257,7 @@ IRestResponse response = client.Execute(request);
         },
         "Saturn": {
             "planet": "Saturn",
-            "nakshathraPada": {
+            "nakshatraPada": {
                 "nak": "Uttra Bhadrapada",
                 "pada": 1
             },
@@ -268,7 +268,7 @@ IRestResponse response = client.Execute(request);
         },
         "Rahu": {
             "planet": "Rahu",
-            "nakshathraPada": {
+            "nakshatraPada": {
                 "nak": "Bharani",
                 "pada": 1
             },
@@ -279,7 +279,7 @@ IRestResponse response = client.Execute(request);
         },
         "Ketu": {
             "planet": "Ketu",
-            "nakshathraPada": {
+            "nakshatraPada": {
                 "nak": "Swathi",
                 "pada": 3
             },
@@ -290,7 +290,7 @@ IRestResponse response = client.Execute(request);
         },
         "Ascendant": {
             "planet": "Ascendant",
-            "nakshathraPada": {
+            "nakshatraPada": {
                 "nak": "Moola",
                 "pada": 1
             },
@@ -392,7 +392,7 @@ IRestResponse response = client.Execute(request);
     "timeZoneId": "America/New_York",
     "sunrise": "07:29 AM",
     "sunset": "07:01 PM",
-    "nakshathra": {
+    "nakshatra": {
         "name": "Ashlesha",
         "endTime": "20:50"
     },
