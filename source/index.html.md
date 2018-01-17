@@ -74,7 +74,7 @@ You must replace <code>your_api_key</code> with your personal API key.
         "timeZoneId": "Australia/Sydney"
     },
     "year": 1967,
-    "month": 02,
+    "month": 2,
     "date": 26,
     "hour": 0,
     "minutes": 1,
